@@ -1,0 +1,18 @@
+.menu {
+  margin: 0;
+  padding: 10px;
+  min-width: 120px;
+  min-height: 100vh;
+  border-right: 1px solid yellow;
+
+  li {
+    list-style: none;
+  }
+
+  a {
+    display: inline-block;
+    color: yellow;
+    padding-bottom: 4px;
+    text-decoration: none;
+  }
+}
