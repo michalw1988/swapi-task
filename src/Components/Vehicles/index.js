@@ -45,7 +45,7 @@ function Vehicles() {
             .map((vehicle, index) => { 
               return (
               <li key={index}>
-                <Link to={`/vehicle/${getIdFromUrl(vehicle.url)}`}>
+                <Link to={`/vehicles/${getIdFromUrl(vehicle.url)}`}>
                   <span className={styles.imagePlaceholder}>no image</span>
                   <span className={styles.name}>{vehicle.name}</span>
                 </Link>

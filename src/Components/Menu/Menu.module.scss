@@ -2,7 +2,7 @@
   margin: 0;
   padding: 20px 10px;
   min-width: 120px;
-  min-height: 100vh;
+  min-height: calc(100vh - 40px);
   border-right: 1px solid yellow;
 
   li {
