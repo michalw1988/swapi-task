@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import styles from './Character.module.scss';
-import { getData, getDataArray } from "../../utils";
+import { getData, getDataArray, getIdFromUrl } from "../../utils";
 
 const Character = () => {
   const [character, setCharacter] = useState({});
@@ -11,6 +11,11 @@ const Character = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams(); 
 
+  const handleError = (error) => {
+    console.error('Error fetching data:', error);
+    setIsLoading(false);
+  }
+
   useEffect(() => {
     fetch(`https://swapi.dev/api/people/${id}`)
       .then((response) => response.json())
@@ -19,10 +24,7 @@ const Character = () => {
         if (data.homeworld) {
           getData(data.homeworld)
             .then(data => setHomeworld(data))
-            .catch((error) => {
-              console.error('Error fetching data:', error);
-              setIsLoading(false);
-            });
+            .catch((error) => handleError(error));
         }
         if (data.vehicles?.length) {
           getDataArray(data.vehicles)
@@ -32,10 +34,7 @@ const Character = () => {
               setVehicles(combinedResults);
               setIsLoading(false);
             })
-            .catch((error) => {
-              console.error('Error fetching data:', error);
-              setIsLoading(false);
-            });
+            .catch((error) => handleError(error));
         }
         if (data.species?.length) {
           getDataArray(data.species)
@@ -45,22 +44,11 @@ const Character = () => {
               setSpecies(combinedResults);
               setIsLoading(false);
             })
-            .catch((error) => {
-              console.error('Error fetching data:', error);
-              setIsLoading(false);
-            });
+            .catch((error) => handleError(error));
         }
       })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-        setIsLoading(false);
-      });
+      .catch((error) => handleError(error));
   }, [])
-
-  const getIdFromUrl = (url) => {
-    const splitUrl = url.split('/');
-    return splitUrl[splitUrl.length - 2];
-  }
 
   return (
     <div className={styles.main}>

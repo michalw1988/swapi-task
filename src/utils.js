@@ -1,3 +1,5 @@
+export const PAGE_SIZE = 10;
+
 export const getData = (url) => fetch(url).then((response) => response.json());
 
 export const getDataArray = (urls) => Promise.all(urls.map(url => getData(url)));
@@ -9,3 +11,8 @@ export const getPaginatedData = (resource, pagesCount) => {
   }
   return Promise.all(urls.map(url => getData(url)));
 };
+
+export const getIdFromUrl = (url) => {
+  const splitUrl = url.split('/');
+  return splitUrl[splitUrl.length - 2];
+}
