@@ -17,10 +17,10 @@ const Character = () => {
   }
 
   useEffect(() => {
-    fetch(`https://swapi.dev/api/people/${id}`)
-      .then((response) => response.json())
+    getData(`https://swapi.dev/api/people/${id}`)
       .then(data => {
         setCharacter(data);
+        setIsLoading(false);
         if (data.homeworld) {
           getData(data.homeworld)
             .then(data => setHomeworld(data))

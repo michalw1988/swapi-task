@@ -5,6 +5,7 @@ import Vehicles from '../Vehicles';
 import Character from '../Character';
 import Menu from '../Menu';
 import Planets from '../Planets';
+import Planet from '../Planet';
 
 function Main() {
   return (
@@ -15,7 +16,9 @@ function Main() {
           <Route path="/" element={<Characters />} />
           <Route path="/characters/:id" element={ <Character />} />
           <Route path="/vehicles" element={<Vehicles />} />
+          
           <Route path="/planets" element={<Planets />} />
+          <Route path="/planets/:id" element={<Planet />} />
         </Routes>
       </div>
     </div>
